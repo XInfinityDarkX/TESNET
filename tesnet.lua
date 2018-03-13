@@ -1,4 +1,4 @@
-e=require("event")
+п»їe=require("event")
 c=require("component")
 gpu=c.gpu
 shell=require("shell")
@@ -12,8 +12,8 @@ b=false
 
 i=1
 
-if args[1]==nil then error("Укажите идентификатор дискеты!") end
-if args[2]==nil then error("Укажите имя компютера в сети TESNET!") end
+if args[1]==nil then error("РЈРєР°Р¶РёС‚Рµ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РґРёСЃРєРµС‚С‹!") end
+if args[2]==nil then error("РЈРєР°Р¶РёС‚Рµ РёРјСЏ РєРѕРјРїСЋС‚РµСЂР° РІ СЃРµС‚Рё TESNET!") end
 
 path="/mnt/"..args[1].."/"
 myname=args[2]
@@ -36,11 +36,11 @@ function read()
 file=io.open(path.."header","r")
 header=file:read(20)
 file:close()
-if header=="TESNET" then --Обработка сообщения TESNET
+if header=="TESNET" then --РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёСЏ TESNET
 file=io.open(path.."to","r")
 to=file:read(99)
 file:close()
-if to==myname then --Обработка пришедшего сообщения
+if to==myname then --РћР±СЂР°Р±РѕС‚РєР° РїСЂРёС€РµРґС€РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
 file=io.open(path.."from","r")
 from=file:read(999)
 file:close()
@@ -59,17 +59,17 @@ file:write("TESNETRETURN")
 file:close()
 	dd.eject()
 	
-	else --Если сообщение не для нас
+	else --Р•СЃР»Рё СЃРѕРѕР±С‰РµРЅРёРµ РЅРµ РґР»СЏ РЅР°СЃ
 
 	dd.eject()
 	
-	end --Обработка пришедшего сообщения
-end --Обработка сообщения TESNET
-if header=="TESNETRETURN" then --Обработка возвращённой дискеты
+	end --РћР±СЂР°Р±РѕС‚РєР° РїСЂРёС€РµРґС€РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
+end --РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёСЏ TESNET
+if header=="TESNETRETURN" then --РћР±СЂР°Р±РѕС‚РєР° РІРѕР·РІСЂР°С‰С‘РЅРЅРѕР№ РґРёСЃРєРµС‚С‹
 computer.pushSignal("tesnet_return",from)
-end --Обработка возвращённой дискеты
+end --РћР±СЂР°Р±РѕС‚РєР° РІРѕР·РІСЂР°С‰С‘РЅРЅРѕР№ РґРёСЃРєРµС‚С‹
 b=false
 end
 
-info("Начинаем слушать сообщения:")
+info("РќР°С‡РёРЅР°РµРј СЃР»СѓС€Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ:")
 info(tostring(e.listen("component_added",kostil)))
